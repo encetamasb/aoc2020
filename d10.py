@@ -36,3 +36,18 @@ for (a, b) in pairs:
     c *= routes
 
 print(c)
+
+
+# better variant for second part
+
+d = defaultdict(lambda: 0)
+d[0] = 1
+for i in range(0, len(jolts)):
+    v = jolts[i]
+    for j in range(3):
+        if i + j + 1 >= len(jolts):
+            break
+        w = jolts[i + 1 + j]
+        if w - v <= 3:
+            d[i + 1 + j] += d[i]
+print(d[len(jolts)-1])
