@@ -51,3 +51,19 @@ for i in range(0, len(jolts)):
         if w - v <= 3:
             d[i + 1 + j] += d[i]
 print(d[len(jolts)-1])
+
+
+# even better variant (O(1) storage) for second part
+
+s = [0, 1, 0, 0, 0]
+for i in range(0, len(jolts)):
+    s.pop(0)
+    v = jolts[i]
+    for j in range(3):
+        if i + j + 1 >= len(jolts):
+            break
+        w = jolts[i + 1 + j]
+        if w - v <= 3:
+            s[j + 1] += s[0]
+    s.append(0)
+print(s[0])
